@@ -1,0 +1,169 @@
+/* Header */  
+.header {  
+    background-color: rgb(19, 208, 255);  
+    padding: 20px;  
+    display: flex;  
+    justify-content: space-between;  
+    align-items: center;  
+  }  
+  
+  .logo {  
+    font-size: 30px;  
+    font-weight: bold;  
+    color: #008cff;  
+  }  
+  
+  .nav-container {  
+    display: flex;  
+    align-items: center;  
+    gap: 16px;  
+    margin: 5px;  
+  }  
+  
+  .nav-links {  
+    display: flex;  
+    justify-content: space-between;  
+    list-style-type: none;  
+    margin: 0;  
+    padding-right: 150px;  
+  }  
+  
+  .nav-links a {  
+    text-decoration: none;  
+    padding: 10px 20px;  
+    color: #333;  
+  }  
+  
+  .nav-links a:hover {  
+    color: #67a9ff;  
+  }  
+  /* Optionally style the form container */  
+  .form-container {  
+    justify-content: center;  
+    align-items: center;  
+    width: 100%; /* Full width (can specify fixed width if required) */  
+    max-width: 650px; /* Max width for larger screens */  
+    background-color: white; /* Background color for the form */  
+    padding: 30px; /* Padding around the form */  
+    border-radius: 10px; /* Rounded corners */  
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional shadow */  
+    margin: auto; /* Center the form container */
+  }
+  /* Button Container */
+  .button-container {
+    display: flex;  
+    justify-content: center;  
+    margin-bottom: 16px;
+    background-color: #7cb5ff;
+    padding: 15px;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+  }
+  
+  .login-button, .register-button {
+    padding: 15px 50px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .login-button {
+    background-color: #edf2f7;  
+    color: #005eff;  
+  }
+  
+  .register-button {
+    background-color: #4299e1;  
+    color: white; 
+    margin-left: 20px;
+  }
+/* Form Fields */  
+.form-fields {  
+    display: flex;  
+    flex-direction: column;  
+    gap: 20px;  
+  }  
+  
+  .form-group {  
+    display: flex;  
+    flex-direction: row; /* Side-by-side alignment */  
+    align-items: center;  
+    width: 100%;  
+  }  
+  
+  .form-label {  
+    width: 160px; /* Fixed width for labels */  
+    font-weight: bold;  
+    text-align: left; /* Align text to the left */  
+    margin-right: 15px; /* Space between label and input */  
+  }  
+  
+  /* Adding margin for conditional fields */  
+  .conditional-field {  
+    margin-top: 15px; /* Space above conditional fields */  
+  }  
+  
+  /* Ensuring uniform height and styles for inputs */  
+  .form-input, .form-input-phone, .form-select {  
+    flex: 1;  
+    padding: 12px;  
+    border: 1px solid #a8cbff;  
+    border-radius: 4px;  
+    box-sizing: border-box;  
+  }  
+  
+  .form-phone {  
+    display: flex;  
+    gap: 10px;  
+    min-height: 48px;  
+  }  
+  
+  .form-password {  
+    position: relative;  
+  }  
+  
+  .password-icon {  
+    position: absolute;  
+    right: 30px;  
+    top: 50%;  
+    transform: translateY(-50%);  
+    cursor: pointer;  
+  }  
+  
+  .form-radio-group {  
+    display: flex;  
+    gap: 10px;  
+  }  
+  
+  .form-radio {  
+    display: flex;  
+    align-items: center;  
+  }  
+  
+  .form-experience {  
+    display: flex;  
+    align-items: center;  
+    gap: 10px;  
+    margin-bottom: 20px; /* Add spacing below the experience section */  
+  }  
+/* Form Footer */  
+.form-footer {  
+    display: flex;  
+    justify-content: center;  
+    margin-top: 25px;  
+}  
+
+.form-submit-btn {  
+    padding: 15px 40px; /* Tăng kích thước padding */  
+    border: none;  
+    background-color: #008cff;  
+    color: white;  
+    border-radius: 20px;  
+    cursor: pointer;  
+    font-size: 20px; /* Tăng kích thước font */  
+    text-align: center; /* Căn giữa nội dung */  
+    transition: background-color 0.3s; /* Hiệu ứng chuyển màu khi hover */  
+}  
+

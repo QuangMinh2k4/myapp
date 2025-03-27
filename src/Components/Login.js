@@ -1,48 +1,69 @@
-import React from 'react';
-import './Login.css';
+import React, { useState } from 'react';  
+import './Login.css';  
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { TbBackground } from 'react-icons/tb';
 
-const Login = () => {
-  return (
-    <div className="app-wrapper">
-      <header className="navbar">
-        <div className="container">
-          <div className="navbar-logo"><a href="#">OneSchool</a></div>
-          <nav className="navbar-menu">
-            <ul className="menu-list">
-              <li><a href="#home-section" className="menu-link">Home</a></li>
-              <li><a href="#courses-section" className="menu-link">Courses</a></li>
-              <li><a href="#programs-section" className="menu-link">Programs</a></li>
-              <li><a href="#teachers-section" className="menu-link">Teachers</a></li>
-              <li><a href="#contact-section" className="menu-link cta-button">Contact Us</a></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
+const Login = () => {  
+  const [passwordVisible, setPasswordVisible] = useState(false);  
 
-      <div className="intro" id="home-section">
-        <div className="intro-background">
-          <div className="container">
-            <div className="row">
-              <div className="col-left">
-                <h1>Learn From The Experts</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa nulla sed quis rerum amet natus quas necessitatibus.</p>
-                <a href="#" className="btn">Admission Now</a>
-              </div>
-              <div className="col-right">
-                <form className="form-box">
-                  <h3>Sign Up</h3>
-                  <input type="text" className="form-input" placeholder="Email Address" />
-                  <input type="password" className="form-input" placeholder="Password" />
-                  <input type="password" className="form-input" placeholder="Re-type Password" />
-                  <input type="submit" className="btn" value="Sign Up" />
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+  const togglePasswordVisibility = () => {  
+    setPasswordVisible(!passwordVisible);  
+  };  
+
+  return (  
+    <div className="bg-white">  
+      <header className="header">  
+        <div href="#" className="logo">E LEARNING</div>  
+        <div className="nav-container">  
+          <nav className="nav-links">  
+            <a href="#">Về chúng tôi</a>  
+            <a href="#">Khóa học</a>  
+            <a href="#">Liên hệ với chúng tôi</a>  
+            <a href="#">FAQ's</a>  
+          </nav>  
+        </div>  
+      </header>  
+      <main className="main-container">  
+        <div className="form-container">  
+        <div className="button-container">
+        <Link to="/login">
+        <button className="login-button" style={{ backgroundColor: '#4299e1', color: 'white' }}>Đăng nhập</button>        </Link>
+        <Link to="/signup">
+          <button className="register-button" style={{backgroundColor:'#edf2f7', color:'#005eff'}}>Đăng kí</button>
+        </Link>
       </div>
-    </div>
-  );
-};
+          <div className="input-fields">  
+            <div>  
+              <label htmlFor="username">Tên đăng nhập</label>  
+              <input   
+                type="text"   
+                id="username"   
+                placeholder="Nhập Tên người dùng của bạn"   
+                className="input-field"   
+              />  
+            </div>  
+            <div>  
+              <label htmlFor="password">Mật khẩu</label>  
+              <div className="password-container">  
+                <input   
+                  type={passwordVisible ? "text" : "password"}   
+                  id="password"   
+                  placeholder="Nhập mật khẩu của bạn"   
+                  className="input-field"   
+                />  
+                <i   
+                  className={`fas fa-eye password-icon ${passwordVisible ? 'active' : ''}`}   
+                  onClick={togglePasswordVisibility}  
+                  style={{ cursor: 'pointer' }}  
+                ></i>  
+              </div>  
+            </div>  
+            <button className="submit-button">Đăng nhập</button>  
+          </div>  
+        </div>  
+      </main>  
+    </div>  
+  );  
+};  
 
-export default Login;
+export default Login;  
