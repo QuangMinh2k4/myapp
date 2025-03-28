@@ -1,119 +1,167 @@
-import React from "react";
-import "./Trangchu.css"; // Assuming the CSS file is named styles.css
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import React, { useState, useEffect } from "react";
+import "./Trangchu.css";
+import { Link } from "react-router-dom";
 
 function ELearning() {
   const courses = [
+    // Your course data...
     {
-      image: 'C:\DemoWeb\my-app\public\img\OIP.jpg',
+      image: '/img/OIP.jpg', // Correct path for public folder
+      category: "Java",
+      duration: "3 Month",
+      title: "Java Core",
+      description: "Cung cấp kiến thức cơ bản về OOP, design pattern",
+    },
+
+    {
+      image: '/img/OIP.jpg', // Correct path for public folder
       category: "Java",
       duration: "3 Month",
       title: "Java Core",
       description: "Cung cấp kiến thức cơ bản về OOP, design pattern",
     },
     {
-      category: "Web",
+      image: '/img/OIP.jpg', // Correct path for public folder
+      category: "Java",
       duration: "3 Month",
-      title: "HTML",
-      description: "Cung cấp kiến thức về Web",
+      title: "Java Core",
+      description: "Cung cấp kiến thức cơ bản về OOP, design pattern",
+    },
+
+    {
+      image: '/img/OIP.jpg', // Correct path for public folder
+      category: "Java",
+      duration: "3 Month",
+      title: "Java Core",
+      description: "Cung cấp kiến thức cơ bản về OOP, design pattern",
     },
     {
-      category: "Python",
+      image: '/img/OIP.jpg', // Correct path for public folder
+      category: "Java",
       duration: "3 Month",
-      title: "Python",
-      description: "Cung cấp kiến thức cơ bản về Python, OOP",
+      title: "Java Core",
+      description: "Cung cấp kiến thức cơ bản về OOP, design pattern",
     },
     {
-      category: "IT",
+      image: '/img/OIP.jpg', // Correct path for public folder
+      category: "Java",
       duration: "3 Month",
-      title: "Kiến thức nhập môn",
-      description: "Cung cấp kiến thức nền tảng về CNTT",
+      title: "Java Core",
+      description: "Cung cấp kiến thức cơ bản về OOP, design pattern",
     },
-    {
-      category: "SQL",
-      duration: "3 Month",
-      title: "My SQL",
-      description: "Cung cấp kiến thức truy vấn cơ bản, khái quát View, Index, Trigger",
-    },
-    {
-        category: "SQL",
-        duration: "3 Month",
-        title: "My SQL",
-        description: "Cung cấp kiến thức truy vấn cơ bản, khái quát View, Index, Trigger",
-      },
-      {
-        category: "SQL",
-        duration: "3 Month",
-        title: "My SQL",
-        description: "Cung cấp kiến thức truy vấn cơ bản, khái quát View, Index, Trigger",
-      },
-      {
-        category: "SQL",
-        duration: "3 Month",
-        title: "My SQL",
-        description: "Cung cấp kiến thức truy vấn cơ bản, khái quát View, Index, Trigger",
-      },
   ];
+
+  const [avatarMenuVisible, setAvatarMenuVisible] = useState(false);
+  const [notificationsVisible, setNotificationsVisible] = useState(false);
+  const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const coursesPerPage = 8;
+
+  const toggleAvatarMenu = () => {
+    setAvatarMenuVisible(!avatarMenuVisible);
+  };
+
+  const toggleNotifications = () => {
+    setNotificationsVisible(!notificationsVisible);
+  };
+
+  const bannerImages = ['/img/OIP.jpg', '/img/OIP (1).jpg', '/img/OIP (2).jpg']; // Correct paths for public folder
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentBannerIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
+    }, 3000); // Change image every 3 seconds
+    return () => clearInterval(interval);
+  }, [bannerImages.length]);
+
+  const totalPages = Math.ceil(courses.length / coursesPerPage);
+  const currentCourses = courses.slice((currentPage - 1) * coursesPerPage, currentPage * coursesPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <div className="container">
-      {/* Sidebar */}
-      <aside className="sidebar">
-      <div href="#" className="logo">E LEARNING</div>
-      <nav>
-          <a href="#">
-            <i className="fas fa-home"></i> Trang chủ
-          </a>
-          <a href="#">
-            <i className="fas fa-chart-line"></i> Tiến độ
-          </a>
-          <a href="#">
-            <i className="fas fa-file-alt"></i> Bài viết
-          </a>
-          <a href="#">
-            <i className="fas fa-book"></i> Khóa học của tôi
-          </a>
-        </nav>
-      </aside>
+  <aside className="sidebar">  
+    <div className="logo">E LEARNING</div>  
+    <nav>  
+        <Link to="/home" className="active-link">  
+            <i className="fas fa-home" ></i> Trang chủ  
+        </Link>  
+        <Link to="/progress">  
+            <i className="fas fa-chart-line"></i> Tiến độ  
+        </Link>  
+        <Link to="/posts">  
+            <i className="fas fa-file-alt"></i> Bài viết  
+        </Link>  
+        <Link to="/my-courses">  
+            <i className="fas fa-book"></i> Khóa học của tôi  
+        </Link>  
+    </nav>  
+</aside>  
 
-      {/* Main Content */}
       <main className="main-content">
-        {/* Header */}
         <header className="header">
           <div className="search-bar">
             <input type="text" placeholder="Bạn muốn học?" />
             <i className="fas fa-search search-icon"></i>
           </div>
           <div className="notification">
-            <i className="fas fa-bell"></i>
-            <div className="avatar"></div>
+            <i className="fas fa-bell" onClick={toggleNotifications}></i>
+            {notificationsVisible && (
+              <div className="notifications-dropdown">
+                <p>Thông báo 1</p>
+                <p>Thông báo 2</p>
+              </div>
+            )}
+            <div className="avatar" onClick={toggleAvatarMenu}></div>
+            {avatarMenuVisible && (
+              <div className="avatar-menu">
+                <button>Trang cá nhân</button>
+                <button>Hỗ trợ</button>
+                <button>Cài đặt</button>
+                <button>Đăng xuất</button>
+              </div>
+            )}
           </div>
         </header>
 
-        {/* Banner */}
-        <div className="banner"></div>
+        <div className="banner">
+          <img src={bannerImages[currentBannerIndex]} alt="Banner" className="banner-image" />
+        </div>
         <div className="pagination">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
+          {bannerImages.map((_, index) => (
+            <div key={index} className={index === currentBannerIndex ? 'active' : ''}></div>
+          ))}
         </div>
 
-        {/* Courses Section */}
         <section className="courses">
           <div className="courses-header">
             <h2>Khóa học</h2>
           </div>
           <div className="course-grid">
-            {courses.map((course, index) => (
+            {currentCourses.map((course, index) => (
               <div className="course-card" key={index}>
+                <img src={course.image} alt={course.title} className="course-image" />
                 <div className="course-header">
-                  <span>{course.category}</span>
-                  <span>{course.duration}</span>
+                  <span><i className="fas fa-code"></i> {course.category}</span>
+                  <span><i className="fas fa-clock"></i> {course.duration}</span>
                 </div>
                 <h3>{course.title}</h3>
                 <p>{course.description}</p>
               </div>
+            ))}
+          </div>
+
+          <div className="pagination-buttons">
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index}
+                className={index + 1 === currentPage ? 'active' : ''}
+                onClick={() => handlePageChange(index + 1)}
+              >
+                {index + 1}
+              </button>
             ))}
           </div>
         </section>

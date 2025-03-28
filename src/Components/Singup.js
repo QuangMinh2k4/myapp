@@ -15,6 +15,21 @@ function RegistrationForm() {
     console.log("Selected Date:", selectedDate);
   };
 
+
+
+  const availableCertificates = ["AWS", "OCPJP", "Azure", "GCP", "CCNA", "PMP", "ITIL", "CISSP", "CEH", "CompTIA"];
+  const [selectedCertificates, setSelectedCertificates] = useState([]);
+
+  const addCertificate = (certificate) => {
+    if (selectedCertificates.length < 10 && !selectedCertificates.includes(certificate)) {
+      setSelectedCertificates([...selectedCertificates, certificate]);
+    }
+  };
+
+  const removeCertificate = (certificate) => {
+    setSelectedCertificates(selectedCertificates.filter((item) => item !== certificate));
+  };
+
   return (
     <div className="bg-main">
       {/* Header */}
@@ -56,23 +71,30 @@ function RegistrationForm() {
               />
             </div>
 
-            {/* Phone */}
-            <div className="form-group">
-              <label htmlFor="phone" className="form-label">
-                Số điện thoại <span className="required">*</span>:
-              </label>
-              <div className="form-phone">
-                <select id="phone-code" className="form-select">
-                  <option>+84</option>
-                </select>
-                <input
-                  type="text"
-                  id="phone"
-                  className="form-input-phone"
-                  placeholder="Nhập số điện thoại"
-                />
-              </div>
-            </div>
+                    {/* Phone */}
+                    <div className="form-group">
+          <label htmlFor="phone" className="form-label">
+            Số điện thoại <span className="required">*</span>:
+          </label>
+          <div className="form-phone">
+            <select id="phone-code" className="form-select">
+              <option value="+84">+84</option>
+              <option value="+1">+1</option>
+              <option value="+44">+44</option>
+              <option value="+61">+61</option>
+              <option value="+81">+81</option>
+              <option value="+49">+49</option>
+              <option value="+33">+33</option>
+              <option value="+91">+91</option>
+            </select>
+            <input
+              type="text"
+              id="phone"
+              className="form-input-phone"
+              placeholder="Nhập số điện thoại"
+            />
+          </div>
+        </div>
 
             {/* Name */}
             <div className="form-group">
@@ -200,13 +222,26 @@ function RegistrationForm() {
 {role === "Giảng viên" && (  
   <>  
     {/* Certificate */}  
-    <div className="form-group conditional-field">  
-      <label htmlFor="certificate" className="form-label">Chứng chỉ:</label>  
-      <select id="certificate" className="form-select">  
-        <option>AWS</option>  
-        <option>OCPJP</option>  
-      </select>  
-    </div>  
+    <div className="form-group conditional-field">
+      <label htmlFor="certificate" className="form-label">Chứng chỉ:</label>
+      <div className="certificate-container">
+        {selectedCertificates.map((certificate, index) => (
+          <div key={index} className="certificate-item">
+            {certificate}
+            <button type="button" className="remove-certificate-button" onClick={() => removeCertificate(certificate)}>x</button>
+          </div>
+        ))}
+        {selectedCertificates.length < 10 && (
+          <select className="form-select" onChange={(e) => addCertificate(e.target.value)}>
+            <option value="" disabled selected>Select a certificate</option>
+            {availableCertificates.map((certificate, index) => (
+              <option key={index} value={certificate}>{certificate}</option>
+            ))}
+          </select>
+        )}
+      </div>
+    </div>
+
 
 {/* Experience */}
 <div className="form-group conditional-field">

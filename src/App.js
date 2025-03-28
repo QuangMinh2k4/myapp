@@ -5,10 +5,16 @@ import Login from './Components/Login';
 import Singup from './Components/Singup';
 import Welcome from './Components/khach'; // Ensure the path is correct
 import ELearning from './Components/Hocvien/Trangchu';
+import ELearningMyApp from './Components/Hocvien/Khoahoc';
+import InfoCourse from './Components/Hocvien/xemkhoahoc/infocourse';
 class App extends React.Component {
   render() {
     return (
-          <ELearning/>
+<Router>
+<div>
+<Tiendo/>
+</div>
+</Router>
     );
   }
 }
